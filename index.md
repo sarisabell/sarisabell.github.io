@@ -1,7 +1,6 @@
-Hello and welcome to this blog. Edit the `index.md` file to change this content. All pages on the blog, including this one, use [Markdown](https://guides.github.com/features/mastering-markdown/). You can include images:
+Hello and welcome to this infohub for my students, but obviously *anyone* is welcome... :)
+Here, after some time, I will hopefully have a collection of approaches that might help you to get into certain topic and be the most efficient and at the same time help me to actually structure and digest my learnings. Nothing is probably perfect, so whenever you find some mistakes, please let me know! :)
 
-![Image of fast.ai logo](images/logo.png)
+# See you around! 
 
-## This is a title
-
-And you can include links, like this [link to fast.ai](https://www.fast.ai). Posts will appear after this file. 
+![campersmile](images/campersmile.png)
