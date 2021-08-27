@@ -33,22 +33,24 @@ fig.set_dpi(100)
 # plot line on axis and give color to it
 ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], color="#00599F")
 
-# make grid for better visibility
+# make grid in plot for better visibility
 ax1.xaxis.grid(color="#bfbfbf")
 ax1.yaxis.grid(color="#bfbfbf")
 
-# set 5 ticks for y axis
-ax1.yaxis.set_major_locator(ticker.LinearLocator(5))
-#set specific ticks for x axis and rotate x axis labels
-plt.xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020"),rotation=45)
+# set, color and label y axis 
+ax1.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
+ax1.set_ylim([0,40]) #limit of range of y axis
+ax1.set_ylabel("COD [mg/L]", fontdict=font, color="#00599F") #give name and color
 
-# set axes ranges
-plt.xlim(["01.01.2020","01.09.2020"])
-plt.ylim([0,40])
+# set color and label x axis
+ax1.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020")) # set specific ticks
+ax1.set_xlim(["01.01.2020","01.09.2020"]) # limit x axis range
+plt.xlabel("Date", fontdict=font) # give the x axis a name and its characteristics (font)
 
-# label x and y axis
-plt.xlabel("Date", fontdict=font)
-plt.ylabel("COD [mg/L]", fontdict=font)
+
+# rotate the x labels in a particular way (if there are questions, please let me know here - the rotation also works on data which is not in "date" format)
+from datetime import datetime, timedelta
+fig.autofmt_xdate(rotation=45)
 
 
 plt.show()
