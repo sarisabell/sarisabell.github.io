@@ -56,14 +56,13 @@ This way, I make sure that I have integers or floats that I am working with. If 
 
 Following, I will finally set up the *"framework"* for the figure to come (basically the box in which the graph will eventually unfold):
 ```python
-# setup figure and its size
 cm = 1/2.54  # centimeters in inches
 fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
-fig.set_dpi(100)
+fig.set_dpi(150)
 ```
 Then I plot the line within the box and give a certain color to it:
 ```python
-ax1.plot(Example["Date"], Example["Parameter [mg/L]"], color="#00599F")
+ax1.plot(Example["Date"], Example["Parameter [mg/L]"], "-", color="#00599F") #the "-" here means that I will get a line plot, if you want dots, use e.g. "."
 ```
 I also make a grid for better readibility (also in the given colours):
 ```python
@@ -95,7 +94,7 @@ And **finally** I will let the plot show:
 plt.show()
 ```
 The output here will look like this:
-
+![](/images/first_plot.png "First easy plot")
 
 
 
