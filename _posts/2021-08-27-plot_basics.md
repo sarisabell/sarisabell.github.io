@@ -11,8 +11,6 @@ Obviously, visualization is one of the best tools to make data understandable an
 
 ## Create your first easy figure
 
-## Code
-
 Python code and output:
 
 ```python
@@ -22,12 +20,15 @@ font = {'family': 'sans-serif',
         'weight': 'normal',
         'size': 12,
         }
-# colors that can be used for lines acc. to the AquaSPICE project: 'AquaSPICE_1': '#00599F', 'AquaSPICE_2': '#BDCD00', 
+# colors that can be used for lines acc. to AquaSPICE project: 
+#              'AquaSPICE_1': '#00599F', 'AquaSPICE_2': '#BDCD00', 
 #              'AquaSPICE_3': '#8EBAE5','AquaSPICE_4': 'C7DDF2', 
 #              'AquaSPICE_5': '595959', 'AquaSPICE_6': '#bfbfbf'
 
-
-fig, ax1 = plt.subplots()
+# setup figure and its size
+cm = 1/2.54  # centimeters in inches
+fig, ax1 = plt.subplots(figsize=(17*cm,14*cm))
+fig.set_dpi(100)
 
 # plot line on axis and give color to it
 ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], color="#00599F")
@@ -36,27 +37,27 @@ ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], color="#00599F")
 ax1.xaxis.grid()
 ax1.yaxis.grid()
 
-# set size of figure
-fig.set_size_inches(5, 4.5)
-fig.set_dpi(100)
 
-# set ticks
-ax1.xaxis.set_major_locator(ticker.LinearLocator(5))
+# set 5 ticks for y axis
 ax1.yaxis.set_major_locator(ticker.LinearLocator(5))
-
-#rotate y axis labels
-plt.xticks(rotation=45)
+#set specific ticks for x axis and rotate x axis labels
+plt.xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020"),rotation=45)
 
 # set axes ranges
-plt.xlim(["01.01.2020","31.06.2020"])
-plt.ylim([0,50])
+plt.xlim(["01.01.2020","01.09.2020"])
+plt.ylim([0,40])
 
 # label x and y axis
 plt.xlabel("Date", fontdict=font)
 plt.ylabel("COD [mg/L]", fontdict=font)
 
+
 plt.show()
 ```
+
+## Create your figure with two secondary y-axis
+
+
 
 ## Further information to grab
 
