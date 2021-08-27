@@ -20,7 +20,7 @@ But in particular, I find the [gallery](https://matplotlib.org/stable/gallery/in
 
 ### The presteps to do before you can start
 
-First, I will import the libraries and functions that I need for plotting:
+First, I will import the libraries/functions that I need for plotting:
 ```python
 import pandas as pd
 import numpy as np
@@ -58,7 +58,7 @@ Following, I will finally set up the *"framework"* for the figure to come (basic
 ```python
 cm = 1/2.54  # centimeters in inches
 fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
-fig.set_dpi(150)
+fig.set_dpi(100)
 ```
 Then I plot the line within the box and give a certain color to it:
 ```python
@@ -99,27 +99,26 @@ The output here will look like this:
 
 
 
-## Create your figure with secondary y-axis
+## Create your figure with another dataset, which uses a secondary y-axis
 
+For this, if I start within a new file/notebook, I will do all the work which I have commented on previously again (basically `copy`-`paste`;)), except for the rotation of the x axis' labels (and I will add colour to the y axis label `Parameter 1 [mg/L]`:
 ```python
-# define font and colors for graph descriptions and labels etc.
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 font = {'family': 'sans-serif',
         'color':  'black',
         'weight': 'normal',
         'size': 12,
         }
-# colors that can be used for lines acc. to AquaSPICE project: 
-#              'AquaSPICE_1': '#00599F', 'AquaSPICE_2': '#BDCD00', 
-#              'AquaSPICE_3': '#8EBAE5','AquaSPICE_4': 'C7DDF2', 
-#              'AquaSPICE_5': '595959', 'AquaSPICE_6': '#bfbfbf'
-
 # setup figure and its size
 cm = 1/2.54  # centimeters in inches
 fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
 fig.set_dpi(100)
 
 # plot line on axis and give color to it
-ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], color="#00599F")
+ax1.plot(Data["Date"], Data["Parameter [mg/L]"], color="#00599F")
 
 # make grid in plot for better visibility
 ax1.xaxis.grid(color="#bfbfbf")
@@ -128,89 +127,41 @@ ax1.yaxis.grid(color="#bfbfbf")
 # set, color and label y axis 
 ax1.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
 ax1.set_ylim([0,40]) #limit of range of y axis
-ax1.set_ylabel("COD [mg/L]", fontdict=font, color="#00599F") #give name and color
+ax1.set_ylabel("Parameter 1 [mg/L]", fontdict=font, color="#00599F") #give name and color (here I further added a 
 
 # set color and label x axis
 ax1.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020")) # set specific ticks
 ax1.set_xlim(["01.01.2020","01.09.2020"]) # limit x axis range
 plt.xlabel("Date", fontdict=font) # give the x axis a name and its characteristics (font)
-
-## NOW --> second axis (ax2)
+```
+And **NOW** I add the second axis `ax2`:
+```python
 # create another y-axis sharing a common x-axis
 ax2 = ax1.twinx()
 
 # plot line on axis and give color to it
-ax2.plot(WaterIntake_2020["Date"], WaterIntake_2020["Total Water [m³/h]"], "#BDCD00")
+ax2.plot(Data["Date"], Data["Water [m³/h]"], "#BDCD00")
 
 # label, color and set 2nd y axis 
 ax2.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
 ax2.set_ylim([500,1500]) # limit range of y axis
-ax2.set_ylabel("Total Water Intake [m³/h]", color="#BDCD00", fontdict=font) # give name and color
-
+ax2.set_ylabel("Water [m³/h]", color="#BDCD00", fontdict=font) # give name and color
 
 # label, color and set x axis of ax2 (same as ax1)
 ax2.set_xlabel("Date", fontdict=font)
 ax2.set_xlim(["01.01.2020","01.09.2020"])
 ax2.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020"))
 
-
-# rotate the x labels in a particular way (if there are questions, please let me know here - the rotation also works on data which is not in "date" format)
+# rotate the x labels in that particular way
 from datetime import datetime, timedelta
 fig.autofmt_xdate(rotation=45)
 
-
 plt.show()
 ```
-## Two graphs for one axis only with a legend
 
-``` python
+The output will then look like:
 
-# define font and colors for graph descriptions and labels etc.
-font = {'family': 'sans-serif',
-        'color':  'black',
-        'weight': 'normal',
-        'size': 11,
-        }
-# colors that can be used for lines acc. to AquaSPICE project: 
-#              'AquaSPICE_1 (dark blue)': '#00599F', 'AquaSPICE_2 (green)': '#BDCD00', 
-#              'AquaSPICE_3 (medium blue)': '#8EBAE5','AquaSPICE_4 (light blue)': 'C7DDF2', 
-#              'AquaSPICE_5 (dark grey)': '595959', 'AquaSPICE_6 (light grey)': '#bfbfbf'
-
-# setup figure and its size
-cm = 1/2.54  # centimeters in inches
-fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
-fig.set_dpi(100)
-
-# plot line on axis and give color to it
-ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], "d", ms=3, color="#00599F")
-ax1.plot(EBSM_2020["Date"], EBSM_2020["Sulfate[mg/L]"], 'o', markersize=3,color="#8EBAE5")
-
-# make grid in plot for better visibility
-ax1.xaxis.grid(color="#bfbfbf")
-ax1.yaxis.grid(color="#bfbfbf")
-
-# set, color and label y axis 
-ax1.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
-ax1.set_ylim([0,40]) #limit of range of y axis
-ax1.set_ylabel("Concentration [mg/L]", fontdict=font) #give name and set characteristics
-
-# set color and label x axis
-ax1.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020")) # set specific ticks
-ax1.set_xlim(["01.01.2020","01.09.2020"]) # limit x axis range
-plt.xlabel("Date", fontdict=font) # give the x axis a name and its characteristics (font)
-
-
-# add legend
-ax1.legend(["COD", "Sulfate"], frameon=False)
-
-# rotate the x labels in a particular way (if there are questions, please let me know here - the rotation also works on data which is not in "date" format)
-from datetime import datetime, timedelta
-fig.autofmt_xdate(rotation=50)
-
-
-
-plt.show()
-```
+![](/images/second_y_axis_plot.png "Your second plot with second y axis")
 
 
 
