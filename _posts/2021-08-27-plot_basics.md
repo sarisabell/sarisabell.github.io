@@ -7,12 +7,28 @@ Here's the table of contents:
 
 ## Why I am posting this
 
-Obviously, visualization is one of the best tools to make data understandable and support your arguments to listeners, readers, etc. - thus, in order to get your point thorugh to me, to anyone, I structured the way I use matplotlib/python and all these great further libraries, so that you get an easy way (hopefully) into plotting in python as well.
+Obviously, visualization is one of the best tools to make data understandable and support your arguments to listeners, readers, etc. - thus, in order to get your point through to me, to anyone, visualize your data well!
+I structured the way I use matplotlib/python and all these great further libraries so far, so that you get an easy way (hopefully) into plotting in python as well.
+I am using the so called `"oo" - method` (**o**bject-**o**riented), which I also recommend to anyone as it is the method where you can actually adjust the plots in all possible ways you want your data to be visualized.
 
-## Create your first easy figure
+### Further information to grab
 
-Python code and output:
+One of the main places I look for information regarding the plots with matplotlib is its [documentation](https://matplotlib.org/) (obviously).
+But in particular, I find the [gallery](https://matplotlib.org/stable/gallery/index.html) useful to get inspiration on how to visualize data and look at example codes that have already been created.
 
+## Creating your first easy figure
+
+### The presteps to do before you can start
+
+First, I will import the libraries and functions that I need for plotting:
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+```
+
+Then, I set up the font to be used for the graph labels.
 ```python
 # define font and colors for graph descriptions and labels etc.
 font = {'family': 'sans-serif',
@@ -20,41 +36,68 @@ font = {'family': 'sans-serif',
         'weight': 'normal',
         'size': 12,
         }
-# colors that can be used for lines acc. to AquaSPICE project: 
-#              'AquaSPICE_1': '#00599F', 'AquaSPICE_2': '#BDCD00', 
-#              'AquaSPICE_3': '#8EBAE5','AquaSPICE_4': 'C7DDF2', 
-#              'AquaSPICE_5': '595959', 'AquaSPICE_6': '#bfbfbf'
+```
+What is very important in a lot of projects, and (probably also yours) is the given templates/styles and colours. In my project, which I am currently working on I can use the following colours, which my students should also be using:
+- dark blue: `'#00599F'` 
+- green: `'#BDCD00'` 
+- medium blue: `'#8EBAE5'`
+- light blue: `'#C7DDF2'`
+- dark grey: `'#595959'`
+- light grey: `'#bfbfbf'`
 
+Obviously, you need some data, which you want to plot - I will usually read my data from `.csv`-files:
+```python
+Data=pd.read_csv("Data/Example.csv", delimiter=';'); #depending on how you have saved your csv file, you might have different delimiters!
+```
+After importing the data as a pd dataframe, I usually check the types of the data by using the function `.dtypes` (more info [here](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dtypes.html)) on the now imported dataframe `Data`.
+This way, I make sure that I have integers or floats that I am working with. If you have objects within your dataframe, these will not be plotted, so check your csv file up front.
+
+### Finally - working on the actual figure
+
+Following, I will finally set up the *"framework"* for the figure to come (basically the box in which the graph will eventually unfold):
+```python
 # setup figure and its size
 cm = 1/2.54  # centimeters in inches
 fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
 fig.set_dpi(100)
-
-# plot line on axis and give color to it
-ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], color="#00599F")
-
-# make grid in plot for better visibility
+```
+Then I plot the line within the box and give a certain color to it:
+```python
+ax1.plot(Example["Date"], Example["Parameter [mg/L]"], color="#00599F")
+```
+I also make a grid for better readibility (also in the given colours):
+```python
 ax1.xaxis.grid(color="#bfbfbf")
 ax1.yaxis.grid(color="#bfbfbf")
+```
+Now, I will do the settings for x and y axis:
 
+```python
 # set, color and label y axis 
 ax1.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
-ax1.set_ylim([0,40]) #limit of range of y axis
-ax1.set_ylabel("COD [mg/L]", fontdict=font, color="#00599F") #give name and color
+ax1.set_ylim([0,40]) #limit of y axis' range
+ax1.set_ylabel("Parameter [mg/L]", fontdict=font, color="#00599F") #give name and color
 
 # set color and label x axis
-ax1.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020")) # set specific ticks
-ax1.set_xlim(["01.01.2020","01.09.2020"]) # limit x axis range
-plt.xlabel("Date", fontdict=font) # give the x axis a name and its characteristics (font)
+ax1.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020")) # set specific ticks, again max. 5
+ax1.set_xlim(["01.01.2020","01.09.2020"]) # limit x axis' range
+plt.xlabel("Date", fontdict=font) # give the x axis a name and its characteristics (font, as was described earlier)
+```
+Last, I usually rotate the x labels, because oftentimes I have dates as labels - the rotation also works with other data than "date" though!
 
-
-# rotate the x labels in a particular way (if there are questions, please let me know here - the rotation also works on data which is not in "date" format)
-from datetime import datetime, timedelta
+```python
+from datetime import datetime, timedelta #import specific function that is required for an "easy" rotation
 fig.autofmt_xdate(rotation=45)
+```
 
-
+And **finally** I will let the plot show:
+```python
 plt.show()
 ```
+The output here will look like this:
+
+
+
 
 ## Create your figure with secondary y-axis
 
@@ -171,13 +214,6 @@ plt.show()
 
 
 
-## Further information to grab
 
-One of the main places I look for information regarding the plots with matplotlib is its [documentation](https://matplotlib.org/) (obviously).
-But in particular, I find the [gallery](https://matplotlib.org/stable/gallery/index.html) useful to get inspiration on how to visualize my data and look at example codes that have been created.
-
-## Footnotes
-
-[^1]: This is the footnote.
 
 
