@@ -118,7 +118,56 @@ fig.autofmt_xdate(rotation=45)
 
 plt.show()
 ```
-## Annotate your figure to avoid ugly legends
+## Two graphs for one axis only with a legend
+
+``` python
+
+# define font and colors for graph descriptions and labels etc.
+font = {'family': 'sans-serif',
+        'color':  'black',
+        'weight': 'normal',
+        'size': 11,
+        }
+# colors that can be used for lines acc. to AquaSPICE project: 
+#              'AquaSPICE_1 (dark blue)': '#00599F', 'AquaSPICE_2 (green)': '#BDCD00', 
+#              'AquaSPICE_3 (medium blue)': '#8EBAE5','AquaSPICE_4 (light blue)': 'C7DDF2', 
+#              'AquaSPICE_5 (dark grey)': '595959', 'AquaSPICE_6 (light grey)': '#bfbfbf'
+
+# setup figure and its size
+cm = 1/2.54  # centimeters in inches
+fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
+fig.set_dpi(100)
+
+# plot line on axis and give color to it
+ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], "d", ms=3, color="#00599F")
+ax1.plot(EBSM_2020["Date"], EBSM_2020["Sulfate[mg/L]"], 'o', markersize=3,color="#8EBAE5")
+
+# make grid in plot for better visibility
+ax1.xaxis.grid(color="#bfbfbf")
+ax1.yaxis.grid(color="#bfbfbf")
+
+# set, color and label y axis 
+ax1.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
+ax1.set_ylim([0,40]) #limit of range of y axis
+ax1.set_ylabel("Concentration [mg/L]", fontdict=font) #give name and set characteristics
+
+# set color and label x axis
+ax1.set_xticks(("01.01.2020", "01.03.2020", "01.05.2020", "01.07.2020", "01.09.2020")) # set specific ticks
+ax1.set_xlim(["01.01.2020","01.09.2020"]) # limit x axis range
+plt.xlabel("Date", fontdict=font) # give the x axis a name and its characteristics (font)
+
+
+# add legend
+ax1.legend(["COD", "Sulfate"], frameon=False)
+
+# rotate the x labels in a particular way (if there are questions, please let me know here - the rotation also works on data which is not in "date" format)
+from datetime import datetime, timedelta
+fig.autofmt_xdate(rotation=50)
+
+
+
+plt.show()
+```
 
 
 
