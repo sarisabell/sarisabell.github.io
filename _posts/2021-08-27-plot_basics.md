@@ -94,7 +94,8 @@ And **finally** I will let the plot show:
 plt.show()
 ```
 The output here will look like this:
-![](/images/first_plot.png "First easy plot")
+
+![](/images/first_plot.png "Your first easy plot")
 
 
 
