@@ -60,11 +60,8 @@ plt.show()
 
 ## Further information to grab
 
-One of the favorite places I look for inspiration and information regarding the plots with matplotlib is its documentation
-
-
-
-
+One of the main places I look for information regarding the plots with matplotlib is its [documentation](https://matplotlib.org/) (obviously).
+But in particular, I find the [gallery](https://matplotlib.org/stable/gallery/index.html) useful to get inspiration on how to visualize my data and look at example codes that have been created.
 
 ## Footnotes
 
