@@ -1,4 +1,4 @@
-# First post about plotting for better visualization
+# First post about getting started with plotting
 
 Here's the table of contents:
 
