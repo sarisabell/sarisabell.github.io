@@ -27,16 +27,15 @@ font = {'family': 'sans-serif',
 
 # setup figure and its size
 cm = 1/2.54  # centimeters in inches
-fig, ax1 = plt.subplots(figsize=(17*cm,14*cm))
+fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
 fig.set_dpi(100)
 
 # plot line on axis and give color to it
 ax1.plot(EBSM_2020["Date"], EBSM_2020["COD[mg/L]"], color="#00599F")
 
 # make grid for better visibility
-ax1.xaxis.grid()
-ax1.yaxis.grid()
-
+ax1.xaxis.grid(color="#bfbfbf")
+ax1.yaxis.grid(color="#bfbfbf")
 
 # set 5 ticks for y axis
 ax1.yaxis.set_major_locator(ticker.LinearLocator(5))
