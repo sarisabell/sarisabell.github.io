@@ -1,4 +1,4 @@
-# First post about getting started with plotting
+# First post about getting started with plotting with python/matplotlib
 
 Here's the table of contents:
 
