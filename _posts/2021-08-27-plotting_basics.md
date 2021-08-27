@@ -1,11 +1,11 @@
-# This is the title
+# First post about plotting for better visualization
 
 Here's the table of contents:
 
 1. TOC
 {:toc}
 
-## Basic setup
+## Why I am posting this
 
 Jekyll requires blog post files to be named according to the following format:
 
