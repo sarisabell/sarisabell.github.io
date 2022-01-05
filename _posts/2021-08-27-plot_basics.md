@@ -18,6 +18,8 @@ But in particular, I find the [gallery](https://matplotlib.org/stable/gallery/in
 
 ## Creating your first easy figure
 
+By the way... all the code I will present in the following lines, is available in my ipynb uploaded in github: [here](https://github.com/sarisabell/Shared_JPNBs/blob/main/Graphs_first_plots.ipynb) - so if you just want to look at the code in its finished version - look it up there.
+
 ### The presteps to do before you can start
 
 First, I will import the libraries/functions that I need for plotting:
@@ -118,7 +120,7 @@ fig, ax1 = plt.subplots(figsize=(16*cm,9*cm))
 fig.set_dpi(100)
 
 # plot line on axis and give color to it
-ax1.plot(Data["Date"], Data["Parameter [mg/L]"], color="#00599F")
+ax1.plot(Example["Date"], Example["Parameter [mg/L]"], color="#00599F")
 
 # make grid in plot for better visibility
 ax1.xaxis.grid(color="#bfbfbf")
@@ -140,7 +142,7 @@ And **NOW** I add the second axis `ax2`:
 ax2 = ax1.twinx()
 
 # plot line on axis and give color to it
-ax2.plot(Data["Date"], Data["Water [m³/h]"], "#BDCD00")
+ax2.plot(Example["Date"], Example["Water [m³/h]"], "#BDCD00")
 
 # label, color and set 2nd y axis 
 ax2.yaxis.set_major_locator(ticker.LinearLocator(5)) #5 ticks only, always ;)
