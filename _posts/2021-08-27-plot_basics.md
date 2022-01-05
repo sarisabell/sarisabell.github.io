@@ -48,11 +48,13 @@ What is very important in a lot of projects, and (probably also yours) is the gi
 - light grey: `'#bfbfbf'`
 
 Obviously, you need some data, which you want to plot - I will usually read my data from `.csv`-files:
+
 ```python
 Data=pd.read_csv("Data/Example.csv", delimiter=';'); #depending on how you have saved your csv file, you might have different delimiters!
 ```
 After importing the data as a pd dataframe, I usually check the types of the data by using the function `.dtypes` (more info [here](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dtypes.html)) on the now imported dataframe `Data`.
-This way, I make sure that I have integers or floats that I am working with. If you have objects within your dataframe, these will not be plotted, so check your csv file up front.
+This way, I make sure that I have integers or floats that I am working with. If you have objects within your dataframe, these will not be plotted, so check your csv file up front!
+Maybe you have some spaces or some data in between which does not have the type `int` or `float`.
 
 ### Finally - working on the actual figure
 
