@@ -25,7 +25,6 @@ By the way... all the code I will present in the following lines, is available i
 First, I will import the libraries/functions that I need for plotting:
 ```python
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 ```
